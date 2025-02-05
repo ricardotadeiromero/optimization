@@ -17,4 +17,4 @@ if st.button("Adicionar Professor"):
 
 if st.session_state.teachers:
     st.write("Lista de Professores:")
-    st.session_state.teachers = st.data_editor(st.session_state.teachers, num_rows="dynamic")
+    st.session_state.teachers = st.data_editor(st.session_state.teachers, num_rows="dynamic", use_container_width=True)
