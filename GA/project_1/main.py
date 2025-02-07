@@ -5,7 +5,7 @@ from ga import GeneticAlgorithm
 from chromosome import Chromosome
 from fitness import FitnessEvaluator
 
-config = GAConfig(population_size=50, mutation_rate=0.05)
+config = GAConfig(population_size=50)
 
 def gene_generator():
     shuffled_tasks = tasks.copy()
@@ -30,3 +30,11 @@ ga = GeneticAlgorithm(
 
 # Execução
 best_solution, fitness_history = ga.run()
+print(f"Fitness: {best_solution.fitness}")
+for idx, resource in enumerate(best_solution.genes):
+    print(f"Recurso {idx+1}")
+    print("------------------")
+    for task in resource:
+        print(f"Tarefa {task.id}")
+
+print(f"Fitness histórico: {fitness_history}")

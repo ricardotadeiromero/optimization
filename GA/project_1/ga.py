@@ -24,11 +24,12 @@ class GeneticAlgorithm:
             self.population.evaluate_fitness(self.fitness_function)
             parents = self.population.select_parents(selection_method="tournament")
             self.population.generate_next_generation(parents, self.crossover_rate, self.mutation_rate)
-            best_chromo = max(self.population.chromosomes, key=lambda x: x.fitness)
+            self.population.evaluate_fitness(self.fitness_function)
+            best_chromo = min(self.population.chromosomes, key=lambda x: x.fitness)
             best_fitness_history.append(best_chromo.fitness)
-            if self._convergence_criteria(best_fitness_history):
-                break
-        return best_chromo.genes, best_fitness_history
+            # if self._convergence_criteria(best_fitness_history):
+            #     break
+        return best_chromo, best_fitness_history
 
     def _convergence_criteria(self, history, window=10, threshold=0.01):
         """Verifica se a aptidão estagnou."""

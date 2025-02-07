@@ -9,16 +9,14 @@ class Population:
         """Calcula a aptidão de todos os cromossomos."""
         for chromo in self.chromosomes:
             chromo.fitness = fitness_function(chromo.genes)
-            if chromo.fitness is None:
-                print("NONEEEEEE")
-            print(chromo.fitness)
+
     def select_parents(self, selection_method="tournament", tournament_size=3):
         """Seleciona pais para reprodução."""
         if selection_method == "tournament":
             parents = []
             for _ in range(len(self.chromosomes)):
                 tournament = random.sample(self.chromosomes, tournament_size)
-                winner = max(tournament, key=lambda x: x.fitness)
+                winner = min(tournament, key=lambda x: x.fitness)
                 parents.append(winner)
             return parents
         # Outros métodos: roleta, ranking...
